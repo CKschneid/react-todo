@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from "react";
 import "./App.css";
 import NewToDo from "./NewToDo";
@@ -8,7 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 
 class App extends Component {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
     this.state = {
       todos: [
@@ -23,7 +22,7 @@ class App extends Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.toggleToDo = this.toggleToDo.bind(this);
   }
-  addToDo(text: string) {
+  addToDo(text) {
     this.setState({
       ...this.state,
       todos: [

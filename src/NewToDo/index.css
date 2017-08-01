@@ -2,15 +2,14 @@
   width: 80%;
   margin: 1em auto;
 }
-/*
-.newtodo--input{
+
+.newtodo--input {
   width: 60%;
   padding: 1em 0.5em;
   background-color: #fdfcf7;
   border: 1.5px solid cadetblue;
 }
-*/
-/*
+
 .newtodo--button {
   width: 30%;
   margin-left: 3%;
@@ -20,7 +19,7 @@
   color: CadetBlue;
   border: 1.5px solid CadetBlue;
 }
-*/
+
 .newtodo--button:hover {
   background-color: CadetBlue;
   border: none;
