@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import NewToDo from './NewToDo';
-import FilterSelection from './FilterSelection';
-import ToDoList from './ToDoList';
+import NewToDo from './Components/NewToDo';
+import FilterSelection from './Components/FilterSelection';
+import ToDoList from './Components/ToDoList';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 

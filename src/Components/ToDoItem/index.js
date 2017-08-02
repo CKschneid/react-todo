@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cleanProps from '../cleanProps';
-import join from '../join';
-import './index.css';
 import styled from 'styled-components';
 
 const ToDoText = styled.span`
@@ -25,7 +22,6 @@ export default class ToDoItem extends Component {
   }
   render() {
     const { todo: { text, completed }, onToggle } = this.props;
-    const domProps = cleanProps(this.props, ToDoItem);
 
     const path = completed
       ? <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
@@ -46,7 +42,7 @@ export default class ToDoItem extends Component {
     const label = this.props.renderText ? this.props.renderText(text) : text;
 
     return (
-      <div {...domProps} onClick={this.handleClick}>
+      <div onClick={this.handleClick}>
         {icon}
         <ToDoText completed={completed}>
           {label}

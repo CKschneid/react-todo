@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ToDoItem from '../ToDoItem';
 import PropTypes from 'prop-types';
-import './index.css';
 import styled from 'styled-components';
 
 const ToDoListContainer = styled.div`
