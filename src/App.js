@@ -1,21 +1,33 @@
-import React, { Component } from "react";
-import "./App.css";
-import NewToDo from "./NewToDo";
-import FilterSelection from "./FilterSelection";
-import ToDoList from "./ToDoList";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import './App.css';
+import NewToDo from './NewToDo';
+import FilterSelection from './FilterSelection';
+import ToDoList from './ToDoList';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const ToDoAppContainer = styled.div`
+  width: 50%;
+  margin: 20px auto;
+`;
+
+const ToDoApp = styled.div`
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+`;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       todos: [
-        { text: "read book", completed: true },
-        { text: "go to store", completed: false },
-        { text: "exercise", completed: false }
+        { text: 'read book', completed: true },
+        { text: 'go to store', completed: false },
+        { text: 'exercise', completed: false }
       ],
-      filter: "all"
+      filter: 'all'
     };
 
     this.addToDo = this.addToDo.bind(this);
@@ -57,11 +69,10 @@ class App extends Component {
   render() {
     const RouteComponent = ({ match }) => {
       console.log(match.params);
-      const filter = match.params.filter || "all";
+      const filter = match.params.filter || 'all';
       return (
-        <div className="todoapp">
+        <ToDoApp>
           <NewToDo addToDo={this.addToDo} />
-
           <FilterSelection currentFilter={filter} />
           <ToDoList
             todos={this.state.todos}
@@ -75,14 +86,14 @@ class App extends Component {
               );
             }}
           />
-        </div>
+        </ToDoApp>
       );
     };
     return (
       <Router>
-        <div className="app-container">
+        <ToDoAppContainer>
           <Route path="/:filter?" component={RouteComponent} />
-        </div>
+        </ToDoAppContainer>
       </Router>
     );
   }

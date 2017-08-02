@@ -1,8 +1,14 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import cleanProps from "../cleanProps";
-import join from "../join";
-import "./index.css";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import cleanProps from '../cleanProps';
+import join from '../join';
+import './index.css';
+import styled from 'styled-components';
+
+const ToDoText = styled.span`
+  text-decoration: ${props => (props.completed ? 'line-through' : 'none')};
+  padding-left: 1.5em;
+`;
 
 export default class ToDoItem extends Component {
   constructor(props) {
@@ -31,28 +37,20 @@ export default class ToDoItem extends Component {
         height="30"
         width="30"
         viewBox="0 0 24 24"
-        className="todoitem-icon"
+        style={{ verticalAlign: 'middle' }}
       >
         {path}
       </svg>
     );
 
-    const className = join(
-      "todoitem",
-      completed && "todoitem--completed",
-      this.props.className
-    );
-
     const label = this.props.renderText ? this.props.renderText(text) : text;
+
     return (
-      <div {...domProps} onClick={this.handleClick} className={className}>
+      <div {...domProps} onClick={this.handleClick}>
         {icon}
-        <span
-          className="todoitem-text"
-          style={completed ? { textDecoration: "line-through" } : null}
-        >
+        <ToDoText completed={completed}>
           {label}
-        </span>
+        </ToDoText>
       </div>
     );
   }
