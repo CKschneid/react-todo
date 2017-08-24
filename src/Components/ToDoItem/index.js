@@ -1,62 +1,44 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+// @flow
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { toggleToDo } from '../../Actions'
+import styled from 'styled-components'
+import { ToDo } from '../../types'
 
 const ToDoText = styled.span`
   text-decoration: ${props => (props.completed ? 'line-through' : 'none')};
   padding-left: 1.5em;
-`;
+`
 
-export default class ToDoItem extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(event: SyntheticMouseEvent) {
-    if (this.props.onClick) {
-      this.props.onClick(event);
-    }
-    if (this.props.onToggle) {
-      this.props.onToggle(this.props.todo);
-    }
-  }
-  render() {
-    const { todo: { text, completed }, onToggle } = this.props;
+let ToDoItem = ({ toDo, dispatch }: { todo: ToDo, dispatch: () => mixed }) => {
+  const { text, id, completed } = toDo
 
-    const path = completed
-      ? <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-      : <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />;
+  const path = completed
+    ? <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+    : <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
 
-    const icon = (
-      <svg
-        fill="CadetBlue"
-        height="30"
-        width="30"
-        viewBox="0 0 24 24"
-        style={{ verticalAlign: 'middle' }}
-      >
-        {path}
-      </svg>
-    );
-
-    const label = this.props.renderText ? this.props.renderText(text) : text;
-
-    return (
-      <div onClick={this.handleClick}>
-        {icon}
-        <ToDoText completed={completed}>
-          {label}
-        </ToDoText>
-      </div>
-    );
-  }
+  const icon = (
+    <svg
+      fill="CadetBlue"
+      height="30"
+      width="30"
+      viewBox="0 0 24 24"
+      style={{ verticalAlign: 'middle' }}
+    >
+      {path}
+    </svg>
+  )
+  return (
+    <div onClick={() => dispatch(toggleToDo(id))}>
+      {icon}
+      <ToDoText completed={completed}>
+        {text}
+      </ToDoText>
+    </div>
+  )
 }
 
-ToDoItem.propTypes = {
-  renderText: PropTypes.func,
-  todo: PropTypes.shape({
-    text: PropTypes.string,
-    completed: PropTypes.bool
-  }).isRequired,
-  onToggle: PropTypes.func
-};
+ToDoItem = connect()(ToDoItem)
+
+export default ToDoItem

@@ -1,5 +1,5 @@
-// flow-typed signature: 2b8ef327f208845f7ee3aa2fd1256278
-// flow-typed version: 02d9734356/react-router-dom_v4.x.x/flow_>=v0.38.x
+// flow-typed signature: 8ba577c5b2fa53de143e153cd71ea49c
+// flow-typed version: 19506e57e6/react-router-dom_v4.x.x/flow_>=v0.38.x <=v0.52.x
 
 declare module 'react-router-dom' {
   declare export class BrowserRouter extends React$Component {
