@@ -7,6 +7,7 @@ Navigate the various branches to explore these different approaches, which inclu
  * [Redux](http://redux.js.org/)
  * [Recompose](https://github.com/acdlite/recompose)
  * [styled-components](https://www.styled-components.com/docs)
+ * [Flow](https://flow.org/en/docs/)
 
 ### Running the App
 
