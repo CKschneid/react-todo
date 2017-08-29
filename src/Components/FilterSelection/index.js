@@ -1,9 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
-import { setVisibilityFilter } from '../../Actions'
 
 const Filter = styled.div`
   width: 80%;
@@ -34,31 +31,27 @@ const InactiveButton = Button.extend`
 
 const ITEMS = ['all', 'active', 'completed']
 
-let FilterSelection = ({
-  currentFilter,
-  dispatch
+const FilterSelection = ({
+  selectedFilter,
+  handleFilterChange
 }: {
-  currentFilter: string,
-  dispatch: () => mixed
+  selectedFilter: string,
+  handleFilterChange: () => mixed
 }) =>
   <Filter>
     {ITEMS.map(
-      (filter, index) =>
-        filter == currentFilter
+      filter =>
+        filter == selectedFilter
           ? <ActiveButton key={filter}>
               {filter}
             </ActiveButton>
           : <InactiveButton
               key={filter}
-              onClick={() => dispatch(setVisibilityFilter(filter))}
+              onClick={() => handleFilterChange(filter)}
             >
               {filter}
             </InactiveButton>
     )}
   </Filter>
-
-FilterSelection = connect(state => ({
-  currentFilter: state.visibilityFilter
-}))(FilterSelection)
 
 export default FilterSelection

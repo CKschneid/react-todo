@@ -1,9 +1,8 @@
 // @flow
 import React, { Component } from 'react'
 import ToDoItem from '../ToDoItem'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
+import { compose, withProps } from 'recompose'
 import { ToDo } from '../../types'
 
 const ToDoListContainer = styled.div`
@@ -12,36 +11,43 @@ const ToDoListContainer = styled.div`
   margin: 1em auto;
 `
 
-let ToDoList = ({ visibleToDos }: { visibleToDos: Array<ToDo> }) => {
-  const renderToDo = (toDo: ToDo) => <ToDoItem key={toDo.id} toDo={toDo} />
+let ToDoList = ({
+  todos,
+  handleToDoToggle
+}: {
+  todos: Array<ToDo>,
+  handleToDoToggle: () => mixed
+}) => {
+  const renderToDo = (todo: ToDo) =>
+    <ToDoItem key={todo.id} todo={todo} handleToDoToggle={handleToDoToggle} />
   return (
     <ToDoListContainer>
-      {visibleToDos.map(renderToDo)}
+      {todos.map(renderToDo)}
     </ToDoListContainer>
   )
 }
 
-const getVisibleTodos = (todos: Array<ToDo>, filter: string): Array<ToDo> => {
-  if (filter == 'all') {
-    return todos
-  }
-  return todos.filter((todo, index) => {
-    switch (filter) {
-      case 'active':
-        return !todo.completed
-      case 'completed':
-        return todo.completed
+const toDoListEnhancer = compose(
+  withProps(({ todos, selectedFilter }) => {
+    let visibleToDos = []
+    if (selectedFilter == 'all') {
+      visibleToDos = todos
+    } else {
+      visibleToDos = todos.filter(todo => {
+        switch (selectedFilter) {
+          case 'active':
+            return !todo.completed
+          case 'completed':
+            return todo.completed
+        }
+      })
+    }
+    return {
+      todos: visibleToDos
     }
   })
-}
+)
 
-const mapStateToProps = (state: {
-  toDos: Array<ToDo>,
-  visibilityFilter: string
-}) => ({
-  visibleToDos: getVisibleTodos(state.toDos, state.visibilityFilter)
-})
-
-ToDoList = connect(mapStateToProps)(ToDoList)
+ToDoList = toDoListEnhancer(ToDoList)
 
 export default ToDoList

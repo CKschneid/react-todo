@@ -1,8 +1,5 @@
 // @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { toggleToDo } from '../../Actions'
 import styled from 'styled-components'
 import { ToDo } from '../../types'
 
@@ -11,8 +8,14 @@ const ToDoText = styled.span`
   padding-left: 1.5em;
 `
 
-let ToDoItem = ({ toDo, dispatch }: { todo: ToDo, dispatch: () => mixed }) => {
-  const { text, id, completed } = toDo
+let ToDoItem = ({
+  todo,
+  handleToDoToggle
+}: {
+  todo: ToDo,
+  handleToDoToggle: () => mixed
+}) => {
+  const { text, id, completed } = todo
 
   const path = completed
     ? <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
@@ -30,7 +33,7 @@ let ToDoItem = ({ toDo, dispatch }: { todo: ToDo, dispatch: () => mixed }) => {
     </svg>
   )
   return (
-    <div onClick={() => dispatch(toggleToDo(id))}>
+    <div onClick={() => handleToDoToggle(id)}>
       {icon}
       <ToDoText completed={completed}>
         {text}
@@ -38,7 +41,5 @@ let ToDoItem = ({ toDo, dispatch }: { todo: ToDo, dispatch: () => mixed }) => {
     </div>
   )
 }
-
-ToDoItem = connect()(ToDoItem)
 
 export default ToDoItem

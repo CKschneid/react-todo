@@ -1,9 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
-import { changeToDoText, addToDo } from '../../Actions'
 
 const NewToDoContainer = styled.div`
   width: 80%;
@@ -33,26 +30,30 @@ const Button = styled.button`
   }
 `
 
-let NewToDo = ({ text, dispatch }: { text: string, dispatch: () => mixed }) =>
+const NewToDo = ({
+  fieldValue,
+  handleFieldChange,
+  handleSubmitNew
+}: {
+  fieldValue: string,
+  handleFieldChange: () => mixed,
+  handleSubmitNew: () => mixed
+}) =>
   <NewToDoContainer>
     <form
       onSubmit={e => {
         e.preventDefault()
-        dispatch(addToDo(text))
+        handleSubmitNew()
       }}
     >
       <Input
         type="text"
         placeholder="ex. pay phone bill..."
-        value={text}
-        onChange={e => dispatch(changeToDoText(e.target.value))}
+        value={fieldValue}
+        onChange={e => handleFieldChange(e.target.value)}
       />
       <Button type="submit"> ADD </Button>
     </form>
   </NewToDoContainer>
-
-NewToDo = connect(state => ({
-  text: state.toDoText
-}))(NewToDo)
 
 export default NewToDo
