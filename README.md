@@ -20,3 +20,9 @@ Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
+
+### Roadmap
+Some future techniques I would like to showcase include:
+*[Firebase](https://firebase.google.com/)
+*[Redux Form](http://redux-form.com/7.0.3/)
+*[Material UI](http://www.material-ui.com/#/)
