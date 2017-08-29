@@ -1,6 +1,6 @@
 # react-todo
 
-This is an ongoing project where I reiterate the familiar task of building a Todo app.  Since React is more of a library than a highly opinionated framework, there are many approaches that can be used to solve the same problem.  Each iteration is designed to showcase a different pattern or library from the exciting ecosystem of the React Community.  
+This is an ongoing project where I reiterate the familiar task of building a Todo app.  Since React is more of a library than a highly opinionated framework, there are many approaches that can be used to solve the same problem.  Each iteration is designed to showcase a different pattern or library from the exciting ecosystem of the React community.  
 
 Navigate the various branches to explore these different approaches, which include:
  * [React Router](https://reacttraining.com/react-router/)
