@@ -23,6 +23,6 @@ The page will reload if you make edits.<br>
 
 ### Roadmap
 Some future techniques I would like to showcase include:
-*[Firebase](https://firebase.google.com/)
-*[Redux Form](http://redux-form.com/7.0.3/)
-*[Material UI](http://www.material-ui.com/#/)
+* [Firebase](https://firebase.google.com/)
+* [Redux Form](http://redux-form.com/7.0.3/)
+* [Material UI](http://www.material-ui.com/#/)
